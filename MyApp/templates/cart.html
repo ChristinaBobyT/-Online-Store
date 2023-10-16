@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'MyAppStatic/django.css' %}">
+    <title>Shopping Cart</title>
+</head>
+<body class="bg-gray-200">
+    <header class="text-center bg-blue-500 text-white py-4">
+        <h1 class="text-2xl font-bold">Your Shopping Cart</h1>
+    </header>
+    <section class="p-4">
+        <table class="w-full bg-white shadow-lg rounded">
+            <thead>
+                <tr>
+                    <th class="px-6 py-3 bg-gray-200 text-gray-600">Product</th>
+                    <th class="px-6 py-3 bg-gray-200 text-gray-600">Price</th>
+                    <th class="px-6 py-3 bg-gray-200 text-gray-600">Quantity</th>
+                    <th class="px-6 py-3 bg-gray-200 text-gray-600">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through cart items using Django template tags -->
+                {% for item in cart_items %}
+                <tr>
+                    <td class="px-6 py-4">{{ item.product.name }}</td>
+                    <td class="px-6 py-4">{{ item.quantity }}</td>
+                    <td class="px-6 py-4">${{ item.product.price }}</td>
+                    <td class="px-6 py-4">${{ item.total }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p class="mt-4 text-right">Total: ${{ total_price }}</p>
+    </section>
+    <div class="flex justify-center space-x-4 mt-4">
+        <a href="{% url 'store' %}" class="bg-blue-500 text-white py-2 px-4 rounded-full">
+            <button class="w-full">Continue Shopping</button>
+        </a>
+        <a href="{% url 'checkout' %}" class="bg-blue-500 text-white py-2 px-4 rounded-full">
+            <button class="w-full">Proceed to Checkout</button>
+        </a>
+    </div>
+</body>
+</html>

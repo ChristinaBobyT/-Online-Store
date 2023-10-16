@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Store</title>
+</head>
+<body style="background-color: #f4f4f4; font-family: Arial, sans-serif;">
+    <header style="background-color: #3498db; color: #fff; padding: 10px; text-align: center;">
+        <h1 style="font-size: 24px; font-weight: bold;">Welcome to Our Online Store</h1>
+    </header>
+    <section class="product-list" style="max-width: 800px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);">
+        <!-- Loop through and display products using Django template tags -->
+        {% for product in products %}
+        <div class="product" style="border: 1px solid #ccc; padding: 10px; margin: 10px; background-color: #fff;">
+            <h2>{{ product.name }}</h2>
+            <p style="font-weight: bold;">Price: ${{ product.price }}</p>
+            <p>Description: {{ product.description }}</p>
+            <a href="#" class="add-to-cart-button" style="background-color: #3498db; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 10px;">Add to Cart</a>
+        </div>
+        {% endfor %}
+    </section>
+    <footer style="text-align: center;">
+        <!-- Add styled buttons for browsing products and accessing the cart -->
+        <a href="{% url 'product_list' %}" class="button-link" style="background-color: #3498db; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-right: 10px;">Browse Products</a>
+        <a href="{% url 'cart' %}" class="button-link" style="background-color: #3498db; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-right: 10px;">View Cart</a>
+        <a href="{% url 'checkout' %}" class="button-link" style="background-color: #3498db; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">Checkout</a>
+    </footer>
+</body>
+</html>

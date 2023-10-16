@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to Your E-commerce Site</title>
+    <!-- Link to the external CSS file for styling "store.html" using {% static %} template tag -->
+    <link rel="stylesheet" type="text/css" href="{% static 'MyAppStatic/store.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Online Store</h1>
+    </header>
+    <section class="product-list">
+        <!-- Loop through and display products using Django template tags -->
+        {% for product in products %}
+        <div class="product">
+            <h2>{{ product.title }}</h2>
+            <p>{{ product.description }}</p>
+            <p>Price: ${{ product.price }}</p>
+            <a href="{% url 'product_detail' product.id %}" class="view-details-button">View Details</a>
+        </div>
+        {% endfor %}
+    </section>
+    <footer>
+        <!-- Add styled buttons for browsing products and accessing the cart -->
+        <a href="{% url 'product_list' %}" class="browse-button">Browse Products</a>
+        <a href="{% url 'cart' %}" class="cart-button">View Cart</a>
+        <a href="{% url 'checkout' %}" class="checkout-button">Checkout</a>
+    </footer>
+</body>
+</html>
+
